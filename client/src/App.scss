@@ -1,0 +1,66 @@
+.stepsWrapper {
+  div {
+    background-color: var(--bs-info);
+    position: relative;
+    cursor: default;
+    &:not(:last-child) {
+      &::after {
+        content: '';
+        position: absolute;
+        right: -1.1rem;
+        width: 0;
+        height: 0;
+        border-top: 20px solid transparent;
+        border-bottom: 20px solid transparent;
+        border-left: 20px solid var(--bs-info);
+      }
+    }
+    &:not(:first-child) {
+      span {
+        margin-left: 1rem;
+      }
+      &::before {
+        content: '';
+        position: absolute;
+        left: 0rem;
+        width: 0;
+        height: 0;
+        border-top: 20px solid transparent;
+        border-bottom: 20px solid transparent;
+        border-left: 15px solid var(--bs-white);
+      }
+    }
+  }
+  .inactive {
+    cursor: not-allowed;
+    background-color: var(--bs-gray-300);
+    &:not(:last-child) {
+      &::after {
+        border-left: 20px solid var(--bs-gray-300);
+      }
+    }
+  }
+}
+
+.questionsList {
+  .question {
+    .option {
+      cursor: pointer;
+      &:hover {
+        background-color: var(--bs-gray-300);
+      }
+    }
+    .read-only {
+      cursor: not-allowed;
+      &:hover {
+        background-color: unset;
+      }
+    }
+  }
+}
+.capital-first-letter {
+  display: block;
+  &::first-letter {
+    text-transform: capitalize;
+  }
+}

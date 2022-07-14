@@ -1,0 +1,34 @@
+import mongoose from 'mongoose';
+import * as dotenv from 'dotenv';
+
+import questions from './data/questions';
+import Question from './models/questionSchema';
+import './utils/dbConnect';
+
+dotenv.config();
+
+const importData = async () => {
+  try {
+    await Question.deleteMany();
+
+    await Question.insertMany(questions);
+    console.log('Data imported!!!!!!!!!!');
+    process.exit();
+  } catch (err) {
+    console.error(err);
+    process.exit();
+  }
+};
+const destroyData = async () => {
+  try {
+    await Question.deleteMany();
+    console.log('Data deleted!!!!!!!!!!');
+    process.exit();
+  } catch (err) {
+    console.error(err);
+    process.exit();
+  }
+};
+
+if (process.argv[2] === '-d') destroyData();
+else importData();
