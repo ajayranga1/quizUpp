@@ -35,6 +35,32 @@ const credentialsReducer = (state = initialState, action: any) => {
         ...state,
         loading: true,
       };
+    case types.CREDENTIALS_DELETE:
+      return {
+        ...state,
+        userInfo: {},
+        error: {},
+        loading: false,
+      };
+    case types.CREDENTIALS_DELETE_SUCCESS:
+      return {
+        ...state,
+        userInfo: {},
+        error: {},
+        loading: false,
+      };
+    case types.CREDENTIALS_DELETE_FAILED:
+      return {
+        ...state,
+        userInfo: {},
+        error: action.payload,
+        loading: false,
+      };
+    case types.CREDENTIALS_DELETE_LOADING:
+      return {
+        ...state,
+        loading: true,
+      };
     default:
       return state;
   }

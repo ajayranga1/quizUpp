@@ -9,6 +9,8 @@ dotenv.config();
 
 const importData = async () => {
   try {
+    console.log('Importing Data!!!!!!!!!!');
+
     await Question.deleteMany();
 
     await Question.insertMany(questions);

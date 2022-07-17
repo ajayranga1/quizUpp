@@ -23,8 +23,7 @@ export const submitResponse = async (req: Request, res: Response) => {
       docType &&
       docNum &&
       email &&
-      //   pic ,
-      score &&
+      score !== null &&
       responses
     ) {
       const newUser = new User({
@@ -45,6 +44,7 @@ export const submitResponse = async (req: Request, res: Response) => {
       res.status(400).json({ error: 'Some details are missing' });
     }
   } catch (error) {
+    console.log(error);
     res.status(400).json({ error: error });
   }
 };

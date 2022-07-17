@@ -8,11 +8,13 @@ import Credentials from './components/Credentials';
 import Quiz from './components/Quiz';
 import Preview from './components/Preview';
 import Footer from './components/Footer';
+import Checking from './components/Checking';
 
 function App() {
   return (
     <div className='App'>
       <NavBar />
+      <Checking />
       <Routes>
         <Route path='step1' element={<Credentials />} />
         <Route path='step2' element={<Quiz />} />

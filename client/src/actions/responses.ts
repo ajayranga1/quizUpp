@@ -3,7 +3,7 @@ import * as types from './../actionTypes/responses';
 export const submitResponse: any =
   (data: any) => async (dispatch: any, getState: any) => {
     try {
-      dispatch(setSubmitAnswerLoading());
+      dispatch(setSubmitResponseLoading());
       var result: any = [];
       const {
         response: { allResponses },
@@ -35,34 +35,26 @@ export const submitResponse: any =
     }
   };
 
-// export const getQuestions: any = () => (dispatch: any, getState: any) => {
-//   const {
-//     question: { allQuestions },
-//   } = getState();
-//   const question = allQuestions.find((ans: any) => ans._id === data.qId);
-// };
-export const setSubmitAnswerLoading = () => {
+export const setSubmitResponseLoading = () => {
   return {
     type: types.RESPONSE_SUBMIT_LOADING,
   };
 };
 
-//   state.allResponses.length !== 0
-//     ? state.allResponses.map((res: any) =>
-//         res.question._id !== action.payload.qId
-//           ? action.payload
-//           : {
-//               question: action.payload.question,
-//               response: action.payload.response,
-//             }
-//       )
-//     : action.payload,
-// ],
-
-// if (allResponses.length !== 0) {
-//   for (var i = 0; i < allResponses.length; i++) {
-//     if (allResponses[i].qId === data.qId) {
-//       result.push({ qId: data.qId, answer: data.answer });
-//     } else result.push(data);rs
-//   }
-// } else result.push(data);
+export const deleteResponses: any = (credentials: any) => (dispatch: any) => {
+  dispatch(setDeleteResponseLoading());
+  try {
+    dispatch({ type: types.RESPONSE_DELETE });
+  } catch (error) {
+    return dispatch({ type: types.RESPONSE_DELETE_FAILED, payload: error });
+  } finally {
+    return dispatch({
+      type: types.RESPONSE_DELETE_SUCCESS,
+    });
+  }
+};
+export const setDeleteResponseLoading = () => {
+  return {
+    type: types.RESPONSE_SUBMIT_LOADING,
+  };
+};

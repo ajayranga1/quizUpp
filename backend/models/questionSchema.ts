@@ -9,6 +9,12 @@ const questionSchema = new mongoose.Schema(
       unique: true,
       required: [true, 'Statement is required'],
     },
+    answer: {
+      type: String,
+      trim: true,
+      lowercase: true,
+      required: [true, 'answer is required'],
+    },
     options: [
       {
         value: {
@@ -17,9 +23,13 @@ const questionSchema = new mongoose.Schema(
           lowercase: true,
           required: [true, 'Option is required'],
         },
-        isCorrect: {
-          type: Boolean,
+        text: {
+          type: String,
+          trim: true,
+          lowercase: true,
+          required: [true, 'Option is required'],
         },
+        _id: { id: false },
       },
     ],
   },

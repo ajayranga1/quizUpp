@@ -19,7 +19,7 @@ export default function App() {
             href='#!'
             role='button'
           >
-            <FaFacebook size={'1.5rem'} />
+            <FaFacebook size={'22px'} />
           </a>
 
           <a
@@ -27,7 +27,7 @@ export default function App() {
             href='#!'
             role='button'
           >
-            <FaTwitter size={'1.5rem'} />
+            <FaTwitter size={'22px'} />
           </a>
 
           <a
@@ -35,7 +35,7 @@ export default function App() {
             href='#!'
             role='button'
           >
-            <FaGoogle size={'1.5rem'} />
+            <FaGoogle size={'22px'} />
           </a>
 
           <a
@@ -43,7 +43,7 @@ export default function App() {
             href='#!'
             role='button'
           >
-            <FaInstagram size={'1.5rem'} />
+            <FaInstagram size={'22px'} />
           </a>
 
           <a
@@ -51,7 +51,7 @@ export default function App() {
             href='#!'
             role='button'
           >
-            <FaLinkedinIn size={'1.5rem'} />
+            <FaLinkedinIn size={'22px'} />
           </a>
 
           <a
@@ -59,7 +59,7 @@ export default function App() {
             href='#!'
             role='button'
           >
-            <FaGithub size={'1.5rem'} />
+            <FaGithub size={'22px'} />
           </a>
         </section>
 

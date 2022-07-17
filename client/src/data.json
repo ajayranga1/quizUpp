@@ -1,134 +1,134 @@
 {
   "data": [
     {
-      "queId": 1,
       "statement": "Grand Central Terminal, Park Avenue, New York is the world's",
+      "answer": "a",
       "options": [
         {
-          "value": "largest railway station",
-          "isCorrect": true
+          "value": "a",
+          "text": "largest railway station"
         },
         {
-          "value": "highest railway station",
-          "isCorrect": false
+          "value": "b",
+          "text": "highest railway station"
         },
         {
-          "value": "longest railway station",
-          "isCorrect": false
+          "value": "c",
+          "text": "longest railway station"
         },
         {
-          "value": "None of the above",
-          "isCorrect": false
+          "value": "d",
+          "text": "None of the above"
         }
       ]
     },
     {
-      "queId": 2,
       "statement": "Which of the following is a non metal that remains liquid at room temperature",
+      "answer": "b",
       "options": [
         {
-          "value": "Phosphorous",
-          "isCorrect": false
+          "value": "a",
+          "text": "Phosphorous"
         },
         {
-          "value": "Bromine",
-          "isCorrect": true
+          "value": "b",
+          "text": "Bromine"
         },
         {
-          "value": "Chlorine",
-          "isCorrect": false
+          "value": "c",
+          "text": "Chlorine"
         },
         {
-          "value": "Helium",
-          "isCorrect": false
+          "value": "d",
+          "text": "Helium"
         }
       ]
     },
     {
-      "queId": 3,
       "statement": "Which one of the following river flows between Vindhyan and Satpura ranges?",
+      "answer": "a",
       "options": [
         {
-          "value": "Narmada",
-          "isCorrect": true
+          "value": "a",
+          "text": "Narmada"
         },
         {
-          "value": "Mahanadi",
-          "isCorrect": false
+          "value": "b",
+          "text": "Mahanadi"
         },
         {
-          "value": "Son",
-          "isCorrect": false
+          "value": "c",
+          "text": "Son"
         },
         {
-          "value": "Netravati",
-          "isCorrect": false
+          "value": "d",
+          "text": "Netravati"
         }
       ]
     },
     {
-      "queId": 4,
       "statement": "The Central Rice Research Station is situated in?",
+      "answer": "b",
       "options": [
         {
-          "value": "Chennai",
-          "isCorrect": false
+          "value": "a",
+          "text": "Chennai"
         },
         {
-          "value": "Cuttack",
-          "isCorrect": true
+          "value": "b",
+          "text": "Cuttack"
         },
         {
-          "value": "Bangalore",
-          "isCorrect": false
+          "value": "c",
+          "text": "Bangalore"
         },
         {
-          "value": "Quilon",
-          "isCorrect": false
+          "value": "d",
+          "text": "Quilon"
         }
       ]
     },
     {
-      "queId": 5,
       "statement": "Tsunamis are not caused by?",
+      "answer": "a",
       "options": [
         {
-          "value": "Hurricanes",
-          "isCorrect": true
+          "value": "a",
+          "text": "Hurricanes"
         },
         {
-          "value": "Earthquakes",
-          "isCorrect": false
+          "value": "b",
+          "text": "Earthquakes"
         },
         {
-          "value": "Undersea landslides",
-          "isCorrect": false
+          "value": "c",
+          "text": "Undersea landslides"
         },
         {
-          "value": "Volcanic eruptions",
-          "isCorrect": false
+          "value": "d",
+          "text": "Volcanic eruptions"
         }
       ]
     },
     {
-      "queId": 6,
       "statement": "The hottest planet in the solar system?",
+      "answer": "b",
       "options": [
         {
-          "value": "Mercury",
-          "isCorrect": false
+          "value": "a",
+          "text": "Mercury"
         },
         {
-          "value": "Venus",
-          "isCorrect": true
+          "value": "b",
+          "text": "Venus"
         },
         {
-          "value": "Mars",
-          "isCorrect": false
+          "value": "c",
+          "text": "Mars"
         },
         {
-          "value": "Jupiter",
-          "isCorrect": false
+          "value": "d",
+          "text": "Jupiter"
         }
       ]
     }

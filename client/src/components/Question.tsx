@@ -33,10 +33,10 @@ const Question = ({ questionData, index, responses, readOnly }: any) => {
             className={`option d-flex ${
               option.value === answer && 'bg-secondary text-light'
             } ${readOnly === true && 'read-only'}`}
-            onClick={() => readOnly !== true && setAnswer(option.value)}
+            onClick={() => readOnly === false && setAnswer(option.value)}
           >
-            {String.fromCharCode(index + 65)}.
-            <span className='capital-first-letter ms-1'> {option.value}</span>
+            {option.value.toUpperCase()}.
+            <span className='capital-first-letter ms-1'> {option.text}</span>
           </ListGroup.Item>
         ))}
     </ListGroup.Item>

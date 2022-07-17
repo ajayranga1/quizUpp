@@ -1,0 +1,41 @@
+import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { deleteCredentials } from '../actions/credentials';
+import { deleteResponses } from '../actions/responses';
+
+function Checking() {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  interface RootState {
+    credentials: {
+      userInfo: any;
+    };
+    submitQuiz: {
+      success: Boolean;
+    };
+  }
+
+  const { userInfo } = useSelector((state: RootState) => state.credentials);
+  const { success: submitQuizSuccess } = useSelector(
+    (state: RootState) => state.submitQuiz
+  );
+
+  useEffect(() => {
+    if (userInfo && userInfo !== 'null' && userInfo !== 'undefined') {
+      navigate('/step1', { replace: true });
+    }
+  }, []);
+  useEffect(() => {
+    if (submitQuizSuccess === true) {
+      dispatch(deleteCredentials());
+      dispatch(deleteResponses());
+    }
+  }, [submitQuizSuccess]);
+
+  return <></>;
+}
+
+export default Checking;
