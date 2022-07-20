@@ -26,3 +26,4 @@ client/yarn-debug.log*
 client/yarn-error.log*
 
 Sample.tsx
+.env
