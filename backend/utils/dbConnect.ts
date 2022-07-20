@@ -4,10 +4,10 @@ dotenv.config();
 
 const localUri = process.env.MONGO_URI_LOCAL as string;
 const uri = process.env.MONGO_URI as string;
-
+console.log(uri);
 (() => {
   mongoose
-    .connect(localUri || uri)
+    .connect(uri || localUri)
     .then(() => {
       console.log('Successfully connected to MongoDb');
     })

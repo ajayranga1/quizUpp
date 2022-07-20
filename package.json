@@ -6,13 +6,15 @@
   "license": "MIT",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "installDep": "npm install && npm install --prefix client",
     "data:import": "ts-node backend/seeder",
     "data:destroy": "ts-node backend/seeder -d",
     "frontend": "npm run start --prefix client",
-    "build-frontend": "npm run build --prefix client",
+    "build-frontend": "npm run installDep && npm run build --prefix client",
     "backend": "ts-node-dev --cls --respawn backend/server --ignore /client/*",
     "dev": "NODE_ENV=development concurrently -n \"backend,frontend\" -c \"red,yellow\" \"npm run backend\" \"npm run frontend\"",
-    "start": "npm run build-frontend && NODE_ENV=production ts-node backend/server"
+    "start": "npm run build-frontend && NODE_ENV=production ts-node backend/server",
+    "startServer": "NODE_ENV=production ts-node backend/server"
   },
   "devDependencies": {
     "@types/cors": "^2.8.12",
