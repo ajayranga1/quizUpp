@@ -7,12 +7,12 @@
       &::after {
         content: '';
         position: absolute;
-        right: -1.1rem;
+        right: -1rem;
         width: 0;
         height: 0;
-        border-top: 20px solid transparent;
-        border-bottom: 20px solid transparent;
-        border-left: 20px solid var(--bs-info);
+        border-top: 18px solid transparent;
+        border-bottom: 18px solid transparent;
+        border-left: 18px solid var(--bs-info);
       }
     }
     &:not(:first-child) {
@@ -25,8 +25,8 @@
         left: 0rem;
         width: 0;
         height: 0;
-        border-top: 20px solid transparent;
-        border-bottom: 20px solid transparent;
+        border-top: 18px solid transparent;
+        border-bottom: 18px solid transparent;
         border-left: 15px solid var(--bs-white);
       }
     }
@@ -36,7 +36,7 @@
     background-color: var(--bs-gray-300);
     &:not(:last-child) {
       &::after {
-        border-left: 20px solid var(--bs-gray-300);
+        border-left: 18px solid var(--bs-gray-300);
       }
     }
   }

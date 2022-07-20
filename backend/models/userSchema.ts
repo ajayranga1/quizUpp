@@ -8,7 +8,7 @@ interface IUser {
   docType: string;
   docNum: string;
   email: string;
-  pic?: string;
+  image?: string;
   score?: number;
   responses?: [{ qId: mongoose.Types.ObjectId; answer: string }];
 }
@@ -20,27 +20,27 @@ const UserSchema = new mongoose.Schema<IUser>(
       trim: true,
       lowercase: true,
       required: [true, 'Name is required'],
-      minLength: 4,
+      minLength: [4, 'Must be at least 4 character long, but got {value}'],
     },
     dob: {
       type: String,
       trim: true,
-      minlength: 8,
+      minLength: [4, 'Must be at least 8 character long, but got {value}'],
       required: [true, 'Date of birth is required'],
     },
     fatherName: {
       type: String,
       trim: true,
       lowercase: true,
+      minLength: [4, 'Must be at least 4 character long, but got {value}'],
       required: [true, 'Father Name is required'],
-      minLength: 4,
     },
     address: {
       type: String,
       trim: true,
       lowercase: true,
+      minLength: [4, 'Must be at least 4 character long, but got {value}'],
       required: [true, 'Address is required'],
-      minLength: 4,
     },
     docType: {
       type: String,
@@ -52,6 +52,7 @@ const UserSchema = new mongoose.Schema<IUser>(
       type: String,
       trim: true,
       lowercase: true,
+      unique: true,
       required: [true, 'Document Number is required'],
     },
     email: {
@@ -60,14 +61,31 @@ const UserSchema = new mongoose.Schema<IUser>(
       lowercase: true,
       unique: true,
       required: [true, 'Email is required'],
+      // validate: {
+      //   validator: async function (email: string,this:any``) {
+      //     const user = await UserSchema.findOne({ email });
+      //     if (user) {
+      //       return false;
+      //     }
+      //     return true;
+      //   },
+      //   message: (props) => 'The specified email address is already in use.',
+      // },
     },
-    pic: {
+    image: {
       type: String,
+      trim: true,
     },
     score: {
       type: Number,
     },
-    responses: [{ qId: mongoose.Schema.Types.ObjectId, answer: String }],
+    responses: [
+      {
+        qId: mongoose.Schema.Types.ObjectId,
+        answer: String,
+        _id: { id: false },
+      },
+    ],
   },
   {
     timestamps: true,
@@ -75,6 +93,17 @@ const UserSchema = new mongoose.Schema<IUser>(
     toObject: { virtuals: true },
   }
 );
+// UserSchema.post('validate', function (error: any, doc: any, next: any) {
+//   const { email } = this;
+//   console.log('first');
+//   if (error.name === 'MongoError' && error.code === 11000) {
+//     console.log('22222222');
+//     next(new Error(`${email} is already registered`));
+//   } else {
+//     console.log('3333333333333');
+//     next();
+//   }
+// });
 const User = mongoose.model('user', UserSchema);
 
 export default User;

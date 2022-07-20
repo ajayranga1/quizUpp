@@ -8,21 +8,21 @@ const QuizSteps = ({ stepsNum }: propTypes) => {
     <Container>
       <div className='stepsWrapper d-flex p-2 flex-row justify-content-center align-items-center my-3'>
         <div className='d-flex align-items-center py-2 px-3 rounded-3'>
-          <span className='xl text-light fw-bold'>Credentials</span>
+          <span className='small text-light fw-bold'>Credentials</span>
         </div>
         <div
           className={`d-flex align-items-center py-2 px-3 rounded-3 ${
             stepsNum > 1 ? 'text-light' : 'inactive'
           }  ms-3`}
         >
-          <span className='xl'>Quiz</span>
+          <span className='small'>Quiz</span>
         </div>
         <div
           className={`d-flex align-items-center py-2 px-3 rounded-3 ${
             stepsNum > 2 ? 'text-light' : 'inactive'
           }  ms-3`}
         >
-          <span className='xl'>Preview / Submit</span>
+          <span className='small'>Preview </span>
         </div>
       </div>
     </Container>

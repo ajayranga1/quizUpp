@@ -22,13 +22,13 @@ export const submitResponse: any =
         (itm: any, index: number, arr: [any]) =>
           arr.findIndex((itm2: any) => itm2.qId === itm.qId) === index
       );
-      return dispatch({
+      dispatch({
         type: types.RESPONSE_SUBMIT,
         payload: result,
       });
     } catch (error) {
-      console.log(error);
-      return dispatch({
+      process.env.NODE_ENV === 'development' && console.log(error);
+      dispatch({
         type: types.RESPONSE_SUBMIT_FAILED,
         payload: error,
       });
@@ -46,9 +46,10 @@ export const deleteResponses: any = (credentials: any) => (dispatch: any) => {
   try {
     dispatch({ type: types.RESPONSE_DELETE });
   } catch (error) {
-    return dispatch({ type: types.RESPONSE_DELETE_FAILED, payload: error });
+    process.env.NODE_ENV === 'development' && console.log(error);
+    dispatch({ type: types.RESPONSE_DELETE_FAILED, payload: error });
   } finally {
-    return dispatch({
+    dispatch({
       type: types.RESPONSE_DELETE_SUCCESS,
     });
   }

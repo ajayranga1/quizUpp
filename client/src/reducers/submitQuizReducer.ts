@@ -19,8 +19,14 @@ const submitQuizReducer = (state = initialState, action: any) => {
         loading: false,
         error: {},
       };
+    case types.QUIZ_SUBMIT_CLEAR:
+      return {
+        success: false,
+        loading: false,
+        error: {},
+      };
     case types.QUIZ_SUBMIT_FAILED:
-      return { ...state, loading: false, error: action.payload.response.data };
+      return { ...state, loading: false, error: action.payload };
     case types.QUIZ_SUBMIT_LOADING:
       return {
         ...state,

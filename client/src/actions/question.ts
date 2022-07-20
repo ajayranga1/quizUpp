@@ -1,22 +1,24 @@
 import axios from 'axios';
 import * as types from './../actionTypes/question';
 
-export const getAllQuestions: any = () => (dispatch: any) => {
+export const getAllQuestions: any = () => async (dispatch: any) => {
   dispatch(setQuestionLoading());
-  axios
-    .get('/api/question/')
-    .then((res) =>
-      dispatch({
-        type: types.QUESTIONS_LOADING_SUCCESS,
-        payload: res.data,
-      })
-    )
-    .catch((err) =>
-      dispatch({
-        type: types.QUESTIONS_LOADING_FAILED,
-        payload: err.response.status,
-      })
-    );
+  try {
+    const { data } = await axios.get('/api/question/');
+
+    dispatch({
+      type: types.QUESTIONS_LOADING_SUCCESS,
+      payload: data,
+    });
+  } catch (error: any) {
+    dispatch({
+      type: types.QUESTIONS_LOADING_FAILED,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
 };
 export const setQuestionLoading = () => {
   return {

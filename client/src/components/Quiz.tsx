@@ -8,7 +8,7 @@ import Question from './Question';
 import { getAllQuestions } from '../actions/question';
 import Meta from './Meta';
 import Loader from './Loader';
-import Message from './Message';
+import Message, { TContainer } from './Message';
 
 function Quiz() {
   const navigate = useNavigate();
@@ -67,7 +67,6 @@ function Quiz() {
   const goForward = () => {
     navigate('/step3');
   };
-
   return (
     <Container>
       <Meta title={'Your Quiz'} />
@@ -77,19 +76,23 @@ function Quiz() {
         <Loader />
       ) : (
         <>
-          {Object.keys(userInfoError).length > 0 && (
-            <Message variant='danger'>{JSON.stringify(userInfoError)}</Message>
-          )}
-          {Object.keys(allQuestionsError).length > 0 && (
-            <Message variant='danger'>
-              {JSON.stringify(allQuestionsError)}
-            </Message>
-          )}
-          {Object.keys(allResponseError).length > 0 && (
-            <Message variant='danger'>
-              {JSON.stringify(allResponseError)}
-            </Message>
-          )}
+          <TContainer>
+            {Object.keys(userInfoError).length > 0 && (
+              <Message variant='danger'>
+                {JSON.stringify(userInfoError)}
+              </Message>
+            )}
+            {Object.keys(allQuestionsError).length > 0 && (
+              <Message variant='danger'>
+                {JSON.stringify(allQuestionsError)}
+              </Message>
+            )}
+            {Object.keys(allResponseError).length > 0 && (
+              <Message variant='danger'>
+                {JSON.stringify(allResponseError)}
+              </Message>
+            )}
+          </TContainer>
           <ListGroup className='questionsList'>
             {allQuestions &&
               allQuestions.map((question: any, index: number) => (
@@ -103,19 +106,19 @@ function Quiz() {
               ))}
           </ListGroup>
           <Row>
-            <Col>
+            <Col xs='6'>
               <Button
                 variant='secondary'
-                className='my-3 ms-3'
+                className='my-3 ms-2'
                 onClick={() => goBack()}
               >
                 Previous
               </Button>
             </Col>
-            <Col xs={1}>
+            <Col xs='6'>
               <Button
                 variant='primary'
-                className='my-3'
+                className='my-3 ms-auto d-block'
                 onClick={() => goForward()}
               >
                 Next

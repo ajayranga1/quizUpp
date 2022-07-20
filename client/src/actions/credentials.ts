@@ -5,9 +5,10 @@ export const saveCredentials: any = (credentials: any) => (dispatch: any) => {
   try {
     dispatch({ type: types.CREDENTIALS_SAVE, payload: credentials });
   } catch (error) {
-    return dispatch({ type: types.CREDENTIALS_SAVE_FAILED, payload: error });
+    process.env.NODE_ENV === 'development' && console.log(error);
+    dispatch({ type: types.CREDENTIALS_SAVE_FAILED, payload: error });
   } finally {
-    return dispatch({
+    dispatch({
       type: types.CREDENTIALS_SAVE_SUCCESS,
       payload: credentials,
     });
@@ -19,9 +20,10 @@ export const deleteCredentials: any = (credentials: any) => (dispatch: any) => {
   try {
     dispatch({ type: types.CREDENTIALS_DELETE });
   } catch (error) {
-    return dispatch({ type: types.CREDENTIALS_DELETE_FAILED, payload: error });
+    process.env.NODE_ENV === 'development' && console.log(error);
+    dispatch({ type: types.CREDENTIALS_DELETE_FAILED, payload: error });
   } finally {
-    return dispatch({
+    dispatch({
       type: types.CREDENTIALS_DELETE_SUCCESS,
     });
   }

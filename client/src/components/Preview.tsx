@@ -7,8 +7,9 @@ import QuizSteps from './QuizSteps';
 import Question from './Question';
 import Meta from './Meta';
 import Loader from './Loader';
-import Message from './Message';
+import Message, { TContainer } from './Message';
 import { submitQuiz } from '../actions/quizSubmit';
+import * as types from '../actionTypes/submitQuiz';
 
 function Preview() {
   const [show, setShow] = useState(false);
@@ -70,11 +71,15 @@ function Preview() {
   const goBack = () => {
     navigate('/step2');
   };
+  const clearSubmitError = () => {
+    dispatch({ type: types.QUIZ_SUBMIT_CLEAR });
+  };
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
   }, []);
   const submitQuizHandler = () => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
     dispatch(submitQuiz());
     closeModal();
   };
@@ -87,24 +92,28 @@ function Preview() {
         <Loader />
       ) : (
         <>
-          {Object.keys(userInfoError).length > 0 && (
-            <Message variant='danger'>{JSON.stringify(userInfoError)}</Message>
-          )}
-          {Object.keys(allQuestionsError).length > 0 && (
-            <Message variant='danger'>
-              {JSON.stringify(allQuestionsError)}
-            </Message>
-          )}
-          {Object.keys(allResponseError).length > 0 && (
-            <Message variant='danger'>
-              {JSON.stringify(allResponseError)}
-            </Message>
-          )}
-          {Object.keys(submitQuizError).length > 0 && (
-            <Message variant='danger'>
-              {JSON.stringify(submitQuizError)}
-            </Message>
-          )}
+          <TContainer>
+            {Object.keys(userInfoError).length > 0 && (
+              <Message variant='danger'>
+                {JSON.stringify(userInfoError)}
+              </Message>
+            )}
+            {Object.keys(allQuestionsError).length > 0 && (
+              <Message variant='danger'>
+                {JSON.stringify(allQuestionsError)}
+              </Message>
+            )}
+            {Object.keys(allResponseError).length > 0 && (
+              <Message variant='danger'>
+                {JSON.stringify(allResponseError)}
+              </Message>
+            )}
+            {Object.keys(submitQuizError).length > 0 && (
+              <Message variant='danger' afterClose={clearSubmitError}>
+                {JSON.stringify(submitQuizError)}
+              </Message>
+            )}
+          </TContainer>
           <ListGroup className='questionsList'>
             {allQuestions &&
               allQuestions.map((question: any, index: number) => (
@@ -118,21 +127,21 @@ function Preview() {
               ))}
           </ListGroup>
           <Row>
-            <Col>
+            <Col xs='6'>
               <Button
                 variant='secondary'
                 type='submit'
-                className='my-3 ms-3'
+                className='my-3 ms-'
                 onClick={() => goBack()}
               >
                 Previous
               </Button>
             </Col>
-            <Col xs={2}>
+            <Col xs='6'>
               <Button
                 variant='primary'
                 type='submit'
-                className='my-3'
+                className='my-3 ms-auto d-block'
                 onClick={() => showModal()}
               >
                 Submit Quiz

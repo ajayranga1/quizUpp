@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { deleteCredentials } from '../actions/credentials';
 import { deleteResponses } from '../actions/responses';
+import { submitQuizClear } from '../actions/quizSubmit';
+import { uploadImageClear } from '../actions/uploadImage';
 
 function Checking() {
   const navigate = useNavigate();
@@ -14,6 +16,9 @@ function Checking() {
       userInfo: any;
     };
     submitQuiz: {
+      success: Boolean;
+    };
+    uploadImage: {
       success: Boolean;
     };
   }
@@ -32,8 +37,11 @@ function Checking() {
     if (submitQuizSuccess === true) {
       dispatch(deleteCredentials());
       dispatch(deleteResponses());
+      dispatch(uploadImageClear());
+      dispatch(submitQuizClear());
+      navigate('/step1');
     }
-  }, [submitQuizSuccess]);
+  }, [submitQuizSuccess, dispatch]);
 
   return <></>;
 }
