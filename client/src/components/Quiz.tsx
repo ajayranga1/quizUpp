@@ -73,6 +73,7 @@ function Quiz() {
   }, []);
 
   useEffect(() => {
+    if (time === 0) navigate('/step3');
     const timer: any = setInterval(() => {
       if (time > 0) {
         setCounter(counter - 1);
@@ -80,7 +81,7 @@ function Quiz() {
       }
     }, 1000);
     return () => clearInterval(timer);
-  }, [counter]);
+  }, [counter, time]);
 
   const goBack = () => {
     navigate('/step1');
@@ -96,7 +97,7 @@ function Quiz() {
       <div className='timerContainer'>
         <h2 className='my-4'>Welcome to the Quiz</h2>
         <span>
-          <FcAlarmClock size={'30px'} />
+          <FcAlarmClock size={'30px'} className='ticking-clock' />
           {counter} s
         </span>
       </div>

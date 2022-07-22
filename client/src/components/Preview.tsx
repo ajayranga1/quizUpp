@@ -43,6 +43,7 @@ function Preview() {
       loading: boolean;
       error: any;
     };
+    timer: { time: number; loading: boolean; error: any };
   }
 
   const {
@@ -68,6 +69,12 @@ function Preview() {
     error: submitQuizError,
   } = useSelector((state: RootState) => state.submitQuiz);
 
+  const {
+    time,
+    loading: timerLoading,
+    error: timerError,
+  } = useSelector((state: RootState) => state.timer);
+
   const goBack = () => {
     navigate('/step2');
   };
@@ -78,6 +85,7 @@ function Preview() {
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
   }, []);
+
   const submitQuizHandler = () => {
     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
     dispatch(submitQuiz());
@@ -93,6 +101,7 @@ function Preview() {
       ) : (
         <>
           <TContainer>
+            {time === 0 && <Message variant='danger'>Quiz Time is Up</Message>}
             {Object.keys(userInfoError).length > 0 && (
               <Message variant='danger'>
                 {JSON.stringify(userInfoError)}

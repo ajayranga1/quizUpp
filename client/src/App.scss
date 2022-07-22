@@ -7,7 +7,7 @@
       &::after {
         content: '';
         position: absolute;
-        right: -1rem;
+        right: -0.94rem;
         width: 0;
         height: 0;
         border-top: 18px solid transparent;
@@ -75,4 +75,24 @@
   justify-content: space-around;
   align-items: center;
   flex-wrap: wrap;
+}
+.ticking-clock {
+  animation: tick 0.4s infinite;
+}
+@keyframes tick {
+  0% {
+    transform: translate(0);
+  }
+  25% {
+    transform: translate(-1px, 0);
+  }
+  50% {
+    transform: translate(0);
+  }
+  75% {
+    transform: translate(1px);
+  }
+  100% {
+    transform: translate(0);
+  }
 }

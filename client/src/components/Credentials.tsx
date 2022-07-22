@@ -9,6 +9,7 @@ import Loader from './Loader';
 import Message, { TContainer } from './Message';
 import { saveCredentials } from '../actions/credentials';
 import { uploadImage, uploadImageClear } from '../actions/uploadImage';
+import { checkMail, setCheckMailClear } from '../actions/checkMail';
 
 function Credentials() {
   const dispatch = useDispatch();
@@ -41,6 +42,12 @@ function Credentials() {
       loading: boolean;
       error: any;
     };
+    checkMail: {
+      isExist: boolean;
+      success: boolean;
+      loading: boolean;
+      error: any;
+    };
   }
 
   const { userInfo, loading } = useSelector(
@@ -52,9 +59,16 @@ function Credentials() {
     success,
     error,
   } = useSelector((state: RootState) => state.uploadImage);
+
   const { success: succesSubmitQuiz } = useSelector(
     (state: RootState) => state.submitQuiz
   );
+  const {
+    isExist,
+    loading: checkMailLoading,
+    success: checkMailSuccess,
+    error: checkMailError,
+  } = useSelector((state: RootState) => state.checkMail);
 
   useEffect(() => {
     if (userInfo) {
@@ -91,7 +105,12 @@ function Credentials() {
       e.stopPropagation();
     }
     setValidated(true);
-    if (validated === true && form.checkValidity() === true) {
+    email && dispatch(checkMail(email));
+    if (
+      validated === true &&
+      form.checkValidity() === true &&
+      isExist === false
+    ) {
       dispatch(
         saveCredentials({
           name,
@@ -107,6 +126,11 @@ function Credentials() {
       navigate('/step2');
     }
   };
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+  }, []);
+
   const uploadFileHandler = (e: any) => {
     dispatch(uploadImage(e.target.files[0]));
   };
@@ -120,10 +144,28 @@ function Credentials() {
             {JSON.stringify(error)}
           </Message>
         )}
+        {Object.keys(checkMailError).length > 0 && (
+          <Message
+            variant='danger'
+            afterClose={() => dispatch(setCheckMailClear())}
+          >
+            {JSON.stringify(checkMailError)}
+          </Message>
+        )}
+        {isExist === true && (
+          <Message
+            variant='danger'
+            afterClose={() => dispatch(setCheckMailClear())}
+          >
+            Email already exist!!!
+          </Message>
+        )}
       </TContainer>
       <Container>
         <QuizSteps stepsNum={1} />
         {loading ? (
+          <Loader />
+        ) : checkMailLoading ? (
           <Loader />
         ) : (
           <>

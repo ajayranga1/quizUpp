@@ -20,9 +20,9 @@ dotenv.config();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use('/api/question', questionRoutes);
-app.use('/api/response', responseRoutes);
-app.use('/api/upload', uploadRoutes);
+app.use('/api/question/', questionRoutes);
+app.use('/api/response/', responseRoutes);
+app.use('/api/upload/', uploadRoutes);
 
 app.use('/uploads', express.static('uploads'));
 if (process.env.NODE_ENV === 'production') {

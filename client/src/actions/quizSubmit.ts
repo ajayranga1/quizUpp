@@ -11,12 +11,7 @@ export const submitQuiz: any =
         question: { allQuestions },
         credentials: { userInfo },
       } = getState();
-      if (allResponses.length === 0) {
-        return dispatch({
-          type: types.QUIZ_SUBMIT_FAILED,
-          payload: { Error: 'Answer at least one question' },
-        });
-      }
+
       allResponses.forEach((itm: any) => {
         allQuestions.forEach((itm2: any) => {
           if (itm.qId === itm2._id && itm.answer === itm2.answer) score++;
@@ -39,7 +34,12 @@ export const submitQuiz: any =
         payload: {},
       });
     } catch (error: any) {
-      process.env.NODE_ENV === 'development' && console.log(error);
+      process.env.NODE_ENV === 'development' &&
+        console.log(
+          error.response && error.response.data.message
+            ? error.response.data.message
+            : error.message
+        );
       return dispatch({
         type: types.QUIZ_SUBMIT_FAILED,
         payload:
