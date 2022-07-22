@@ -164,7 +164,7 @@ function Quiz() {
                 className='my-3 ms-2'
                 onClick={() => goBack()}
               >
-                Update Credentials
+                Go Back
               </Button>
             </Col>
             <Col xs='6'>
@@ -173,7 +173,7 @@ function Quiz() {
                 className='my-3 ms-auto d-block'
                 onClick={() => goForward()}
               >
-                Preview Quiz
+                Preview
               </Button>
             </Col>
           </Row>
