@@ -28,11 +28,11 @@ function Checking() {
     (state: RootState) => state.submitQuiz
   );
 
-  // useEffect(() => {
-  //   if (userInfo && userInfo !== 'null' && userInfo !== 'undefined') {
-  //     navigate('/step1', { replace: true });
-  //   }
-  // }, []);
+  useEffect(() => {
+    if (userInfo && userInfo !== 'null' && userInfo !== 'undefined') {
+      navigate('/step1', { replace: true });
+    }
+  }, []);
 
   useEffect(() => {
     if (submitQuizSuccess === true) {
