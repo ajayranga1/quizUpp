@@ -33,6 +33,7 @@ function Checking() {
       navigate('/step1', { replace: true });
     }
   }, []);
+
   useEffect(() => {
     if (submitQuizSuccess === true) {
       dispatch(deleteCredentials());

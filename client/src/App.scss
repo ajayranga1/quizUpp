@@ -2,7 +2,7 @@
   div {
     background-color: var(--bs-info);
     position: relative;
-    cursor: default;
+    cursor: pointer;
     &:not(:last-child) {
       &::after {
         content: '';
@@ -58,9 +58,21 @@
     }
   }
 }
+
 .capital-first-letter {
-  display: block;
   &::first-letter {
     text-transform: capitalize;
   }
+}
+
+.timerContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.allQuestionButtonsContainer {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
 }

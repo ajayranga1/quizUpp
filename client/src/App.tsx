@@ -1,8 +1,8 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 
-import './App.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './App.scss';
 import NavBar from './components/NavBar';
 import Credentials from './components/Credentials';
 import Quiz from './components/Quiz';

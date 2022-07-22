@@ -4,7 +4,6 @@ dotenv.config();
 
 const localUri = process.env.MONGO_URI_LOCAL as string;
 const uri = process.env.MONGO_URI as string;
-console.log(uri);
 (() => {
   mongoose
     .connect(uri || localUri)

@@ -1,4 +1,6 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
+import { FcAlarmClock } from 'react-icons/fc';
+import { BsCheck2Circle } from 'react-icons/bs';
 import { Container, ListGroup, Button, Row, Col } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -6,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import QuizSteps from './QuizSteps';
 import Question from './Question';
 import { getAllQuestions } from '../actions/question';
+import { tickTimer } from '../actions/timer';
 import Meta from './Meta';
 import Loader from './Loader';
 import Message, { TContainer } from './Message';
@@ -13,7 +16,8 @@ import Message, { TContainer } from './Message';
 function Quiz() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
+  const [counter, setCounter] = useState(60);
+  const [currentQuestion, setCurrentQuestion] = useState(0);
   interface RootState {
     credentials: {
       userInfo: any;
@@ -30,6 +34,7 @@ function Quiz() {
       loading: boolean;
       error: any;
     };
+    timer: { time: number; loading: boolean; error: any };
   }
 
   const {
@@ -50,6 +55,12 @@ function Quiz() {
     error: allResponseError,
   } = useSelector((state: RootState) => state.response);
 
+  const {
+    time,
+    loading: timerLoading,
+    error: timerError,
+  } = useSelector((state: RootState) => state.timer);
+
   useEffect(() => {
     if (allQuestions.length < 1) {
       dispatch(getAllQuestions());
@@ -58,7 +69,18 @@ function Quiz() {
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+    setCounter(time);
   }, []);
+
+  useEffect(() => {
+    const timer: any = setInterval(() => {
+      if (time > 0) {
+        setCounter(counter - 1);
+        dispatch(tickTimer());
+      }
+    }, 1000);
+    return () => clearInterval(timer);
+  }, [counter]);
 
   const goBack = () => {
     navigate('/step1');
@@ -71,7 +93,13 @@ function Quiz() {
     <Container>
       <Meta title={'Your Quiz'} />
       <QuizSteps stepsNum={2} />
-      <h2 className='my-4'>Welcome to the Quiz</h2>
+      <div className='timerContainer'>
+        <h2 className='my-4'>Welcome to the Quiz</h2>
+        <span>
+          <FcAlarmClock size={'30px'} />
+          {counter} s
+        </span>
+      </div>
       {questionLoading || responseLoading ? (
         <Loader />
       ) : (
@@ -94,16 +122,39 @@ function Quiz() {
             )}
           </TContainer>
           <ListGroup className='questionsList'>
-            {allQuestions &&
-              allQuestions.map((question: any, index: number) => (
-                <Question
-                  questionData={question}
-                  index={index + 1}
-                  key={index}
-                  responses={allResponses}
-                  readOnly={false}
-                />
-              ))}
+            {allQuestions.length > 0 && (
+              <Question
+                questionData={allQuestions[currentQuestion]}
+                index={currentQuestion + 1}
+                key={currentQuestion}
+                response={allResponses.find(
+                  (que) => que.qId === allQuestions[currentQuestion]._id
+                )}
+                readOnly={false}
+              />
+            )}
+            <h4>Go To Question</h4>
+            <div className='allQuestionButtonsContainer'>
+              {allQuestions.length > 0 &&
+                allQuestions.map((que, index) => (
+                  <Button
+                    key={index}
+                    className={`px-5 m-2`}
+                    variant={
+                      currentQuestion === index
+                        ? 'secondary'
+                        : 'outline-success'
+                    }
+                    onClick={() => setCurrentQuestion(index)}
+                  >
+                    {allResponses.find((resp) => resp.qId === que._id) ? (
+                      <BsCheck2Circle />
+                    ) : (
+                      index + 1
+                    )}
+                  </Button>
+                ))}
+            </div>
           </ListGroup>
           <Row>
             <Col xs='6'>
@@ -112,7 +163,7 @@ function Quiz() {
                 className='my-3 ms-2'
                 onClick={() => goBack()}
               >
-                Previous
+                Update Credentials
               </Button>
             </Col>
             <Col xs='6'>
@@ -121,7 +172,7 @@ function Quiz() {
                 className='my-3 ms-auto d-block'
                 onClick={() => goForward()}
               >
-                Next
+                Preview Quiz
               </Button>
             </Col>
           </Row>

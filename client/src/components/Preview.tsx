@@ -121,7 +121,9 @@ function Preview() {
                   questionData={question}
                   index={index + 1}
                   key={index}
-                  responses={allResponses}
+                  response={allResponses.find(
+                    (que) => que.qId === question._id
+                  )}
                   readOnly={true}
                 />
               ))}

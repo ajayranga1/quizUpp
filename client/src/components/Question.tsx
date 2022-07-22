@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 
 import { submitResponse } from '../actions/responses';
 
-const Question = ({ questionData, index, responses, readOnly }: any) => {
+const Question = ({ questionData, index, response, readOnly }: any) => {
   const [answer, setAnswer] = useState('');
   const dispatch = useDispatch();
 
@@ -13,12 +13,10 @@ const Question = ({ questionData, index, responses, readOnly }: any) => {
   }, [answer, questionData, dispatch]);
 
   useEffect(() => {
-    if (responses && answer === '') {
-      responses.forEach((itm: any) => {
-        itm.qId === questionData._id && setAnswer(itm.answer);
-      });
+    if (response && answer === '') {
+      setAnswer(response.answer);
     }
-  }, [responses, questionData._id, answer]);
+  }, [response, answer]);
 
   return (
     <ListGroup.Item className='question my-2'>
@@ -35,7 +33,7 @@ const Question = ({ questionData, index, responses, readOnly }: any) => {
             } ${readOnly === true && 'read-only'}`}
             onClick={() => readOnly === false && setAnswer(option.value)}
           >
-            {option.value.toUpperCase()}.
+            <span>{option.value.toUpperCase()}.</span>
             <span className='capital-first-letter ms-1'> {option.text}</span>
           </ListGroup.Item>
         ))}

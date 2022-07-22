@@ -55,7 +55,7 @@ export const submitResponse = asyncHandler(
         res.status(201).json(userData);
       } else {
         res.status(400);
-        throw new Error('Some details are missing');
+        throw new Error('Some User details are missing');
       }
     } catch (error: any) {
       console.log(error);
