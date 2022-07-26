@@ -4,7 +4,13 @@ import { useDispatch } from 'react-redux';
 
 import { submitResponse } from '../actions/responses';
 
-const Question = ({ questionData, index, response, readOnly }: any) => {
+const Question = ({
+  questionData,
+  index,
+  response,
+  readOnly,
+  adminPreview,
+}: any) => {
   const [answer, setAnswer] = useState('');
   const dispatch = useDispatch();
 
@@ -22,21 +28,41 @@ const Question = ({ questionData, index, response, readOnly }: any) => {
     <ListGroup.Item className='question my-2'>
       <h5 className='questionText d-flex'>
         {index}.
-        <p className='capital-first-letter ms-1'>{questionData.statement}</p>
+        <p
+          className={`capital-first-letter ms-1 ${
+            questionData.answer === answer ? 'text-success' : 'text-danger'
+          }`}
+        >
+          {questionData.statement}
+        </p>
       </h5>
       {questionData &&
-        questionData.options.map((option: any, index: number) => (
-          <ListGroup.Item
-            key={index}
-            className={`option d-flex ${
-              option.value === answer && 'bg-secondary text-light'
-            } ${readOnly === true && 'read-only'}`}
-            onClick={() => readOnly === false && setAnswer(option.value)}
-          >
-            <span>{option.value.toUpperCase()}.</span>
-            <span className='capital-first-letter ms-1'> {option.text}</span>
-          </ListGroup.Item>
-        ))}
+        questionData.options.map((option: any, index: number) =>
+          !adminPreview ? (
+            <ListGroup.Item
+              key={index}
+              className={`option d-flex ${
+                option.value === answer && 'bg-secondary text-light'
+              } ${readOnly === true && 'read-only'}`}
+              onClick={() => readOnly === false && setAnswer(option.value)}
+            >
+              <span>{option.value.toUpperCase()}.</span>
+              <span className='capital-first-letter ms-1'> {option.text}</span>
+            </ListGroup.Item>
+          ) : (
+            <ListGroup.Item
+              key={index}
+              className={`option d-flex 
+              ${option.value === answer && 'bg-secondary text-light'} 
+              ${option.value === questionData.answer && 'bg-info text-light'}
+                            ${readOnly === true && 'read-only'}`}
+              onClick={() => readOnly === false && setAnswer(option.value)}
+            >
+              <span>{option.value.toUpperCase()}.</span>
+              <span className='capital-first-letter ms-1'> {option.text}</span>
+            </ListGroup.Item>
+          )
+        )}
     </ListGroup.Item>
   );
 };

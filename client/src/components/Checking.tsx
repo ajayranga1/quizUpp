@@ -28,19 +28,21 @@ function Checking() {
     (state: RootState) => state.submitQuiz
   );
 
-  useEffect(() => {
-    if (userInfo && userInfo !== 'null' && userInfo !== 'undefined') {
-      navigate('/step1', { replace: true });
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (userInfo && userInfo !== 'null' && userInfo !== 'undefined') {
+  //     navigate('/step1', { replace: true });
+  //   }
+  // }, []);
 
   useEffect(() => {
     if (submitQuizSuccess === true) {
-      dispatch(deleteCredentials());
-      dispatch(deleteResponses());
-      dispatch(uploadImageClear());
-      dispatch(submitQuizClear());
-      navigate('/step1');
+      setTimeout(() => {
+        dispatch(deleteCredentials());
+        dispatch(deleteResponses());
+        dispatch(uploadImageClear());
+        dispatch(submitQuizClear());
+        navigate('/step1');
+      }, 4000);
     }
   }, [submitQuizSuccess, dispatch]);
 

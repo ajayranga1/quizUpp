@@ -13,8 +13,10 @@ import * as types from '../actionTypes/submitQuiz';
 
 function Preview() {
   const [show, setShow] = useState(false);
+  const [show2, setShow2] = useState(false);
 
   const closeModal = () => setShow(false);
+  const closeModal2 = () => setShow2(false);
   const showModal = () => {
     setShow(true);
   };
@@ -85,6 +87,10 @@ function Preview() {
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
   }, []);
+
+  useEffect(() => {
+    setShow2(success);
+  }, [success]);
 
   const submitQuizHandler = () => {
     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
@@ -173,6 +179,14 @@ function Preview() {
               </Button>
             </Modal.Footer>
           </Modal>
+          {success && (
+            <Modal show={show2} onHide={closeModal2}>
+              <Modal.Header closeButton>
+                <Modal.Title>Quiz Submitted</Modal.Title>
+              </Modal.Header>
+              <Modal.Body>Your Responses are recorded.!!!!!!</Modal.Body>
+            </Modal>
+          )}
         </>
       )}
     </Container>

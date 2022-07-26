@@ -9,6 +9,7 @@ import './utils/dbConnect';
 import questionRoutes from './routes/questionRoutes';
 import responseRoutes from './routes/responseRoutes';
 import uploadRoutes from './routes/uploadRoutes';
+import adminRoutes from './routes/adminRoutes';
 
 const limiter = expressRateLimit({ windowMs: 3 * 60 * 1000, max: 50 });
 
@@ -23,6 +24,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/api/question/', questionRoutes);
 app.use('/api/response/', responseRoutes);
 app.use('/api/upload/', uploadRoutes);
+app.use('/api/admin/', adminRoutes);
 
 app.use('/uploads', express.static('uploads'));
 if (process.env.NODE_ENV === 'production') {

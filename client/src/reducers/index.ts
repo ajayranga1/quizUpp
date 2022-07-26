@@ -6,6 +6,7 @@ import submitQuizReducer from './submitQuizReducer';
 import uploadImageReducer from './uploadImageReducer';
 import timerReducer from './timerReducer';
 import checkMailReducer from './checkMailReducer';
+import allResponsesReducer from './allResponsesReducer';
 
 export default combineReducers({
   question: questionReducer,
@@ -15,4 +16,5 @@ export default combineReducers({
   uploadImage: uploadImageReducer,
   timer: timerReducer,
   checkMail: checkMailReducer,
+  adminAllResponses: allResponsesReducer,
 });
