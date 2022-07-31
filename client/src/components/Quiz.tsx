@@ -69,6 +69,9 @@ function Quiz() {
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+    if (Object.keys(userInfo).length === 0) {
+      navigate('/step1', { replace: true });
+    }
     setCounter(time);
   }, []);
 

@@ -10,6 +10,10 @@ import Loader from './Loader';
 import Message, { TContainer } from './Message';
 import { submitQuiz } from '../actions/quizSubmit';
 import * as types from '../actionTypes/submitQuiz';
+import { deleteCredentials } from '../actions/credentials';
+import { deleteResponses } from '../actions/responses';
+import { submitQuizClear } from '../actions/quizSubmit';
+import { uploadImageClear } from '../actions/uploadImage';
 
 function Preview() {
   const [show, setShow] = useState(false);
@@ -86,11 +90,23 @@ function Preview() {
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+    if (Object.keys(userInfo).length === 0) {
+      navigate('/step1', { replace: true });
+    }
   }, []);
 
   useEffect(() => {
     setShow2(success);
-  }, [success]);
+    if (success === true) {
+      setTimeout(() => {
+        dispatch(deleteCredentials());
+        dispatch(deleteResponses());
+        dispatch(uploadImageClear());
+        dispatch(submitQuizClear());
+        navigate('/step1');
+      }, 4000);
+    }
+  }, [success, dispatch]);
 
   const submitQuizHandler = () => {
     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
