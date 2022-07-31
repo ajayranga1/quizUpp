@@ -17,11 +17,14 @@ export const uploadImage: any =
         type: types.UPLOAD_IMAGE,
         payload: data,
       });
-    } catch (error) {
+    } catch (error: any) {
       process.env.NODE_ENV === 'development' && console.log(error);
       dispatch({
         type: types.UPLOAD_IMAGE_FAILED,
-        payload: error,
+        payload:
+          error.response && error.response.data.message
+            ? error.response.data.message
+            : error.message,
       });
     } finally {
       dispatch({

@@ -28,13 +28,19 @@ const Question = ({
     <ListGroup.Item className='question my-2'>
       <h5 className='questionText d-flex'>
         {index}.
-        <p
-          className={`capital-first-letter ms-1 ${
-            questionData.answer === answer ? 'text-success' : 'text-danger'
-          }`}
-        >
-          {questionData.statement}
-        </p>
+        {adminPreview ? (
+          <p
+            className={`capital-first-letter ms-1 ${
+              questionData.answer !== answer ? 'text-success' : 'text-danger'
+            }`}
+          >
+            {questionData.statement}
+          </p>
+        ) : (
+          <p className={`capital-first-letter ms-1`}>
+            {questionData.statement}
+          </p>
+        )}
       </h5>
       {questionData &&
         questionData.options.map((option: any, index: number) =>
