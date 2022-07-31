@@ -15,7 +15,7 @@ export default function App() {
       <Container className='p-4'>
         <section className='mb-4'>
           <a
-            className='btn btn-outline btn-floating m-1'
+            className='btn btn-outline btn-floating m-1  rounded-pill'
             href='#!'
             role='button'
           >
@@ -23,7 +23,7 @@ export default function App() {
           </a>
 
           <a
-            className='btn btn-outline btn-floating m-1'
+            className='btn btn-outline btn-floating m-1  rounded-pill'
             href='#!'
             role='button'
           >
@@ -31,7 +31,7 @@ export default function App() {
           </a>
 
           <a
-            className='btn btn-outline btn-floating m-1'
+            className='btn btn-outline btn-floating m-1  rounded-pill'
             href='#!'
             role='button'
           >
@@ -39,7 +39,7 @@ export default function App() {
           </a>
 
           <a
-            className='btn btn-outline btn-floating m-1'
+            className='btn btn-outline btn-floating m-1  rounded-pill'
             href='#!'
             role='button'
           >
@@ -47,7 +47,7 @@ export default function App() {
           </a>
 
           <a
-            className='btn btn-outline btn-floating m-1'
+            className='btn btn-outline btn-floating m-1  rounded-pill'
             href='#!'
             role='button'
           >
@@ -55,7 +55,7 @@ export default function App() {
           </a>
 
           <a
-            className='btn btn-outline btn-floating m-1'
+            className='btn btn-outline btn-floating m-1  rounded-pill'
             href='#!'
             role='button'
           >
@@ -91,13 +91,12 @@ export default function App() {
 
         <section className='mb-4'>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt
-            distinctio earum repellat quaerat voluptatibus placeat nam, commodi
-            optio pariatur est quia magnam eum harum corrupti dicta, aliquam
-            sequi voluptate quas.
+            Do you want to participate in quizzes? With the help of Quiz App
+            this becomes all very simple. With this app you can take and share
+            quizzes.
           </p>
         </section>
-
+        {/* 
         <section className=''>
           <Row>
             <Col lg='3' md='6' className='mb-4 mb-md-0'>
@@ -208,17 +207,14 @@ export default function App() {
               </ul>
             </Col>
           </Row>
-        </section>
+        </section> */}
       </Container>
 
       <div
         className='text-center p-3'
         style={{ backgroundColor: 'rgba(0, 0, 0, 0.2)' }}
       >
-        © 2020 Copyright:{' '}
-        <a className='text-black' href='#'>
-          Company Name
-        </a>
+        © 2020 Copyright: Home Depot
       </div>
     </footer>
   );

@@ -5,19 +5,19 @@ import { useNavigate } from 'react-router-dom';
 const NavBar = () => {
   const navigate = useNavigate();
   return (
-    <Navbar collapseOnSelect expand='lg' bg='light' variant='light'>
+    <Navbar collapseOnSelect bg='light' variant='light'>
       <Container>
         <Navbar.Brand
           onClick={() => navigate('/')}
           style={{ cursor: 'pointer' }}
         >
-          Company Name
+          Home Depot
         </Navbar.Brand>
-        <Navbar.Toggle aria-controls='responsive-navbar-nav' />
+        {/* <Navbar.Toggle aria-controls='responsive-navbar-nav' />
         <Navbar.Collapse id='responsive-navbar-nav'>
           <Nav className='me-auto'>
             <Nav.Link href='#Quizes'>Quizes</Nav.Link>
-            {/* <NavDropdown title='Dropdown' id='collasible-nav-dropdown'>
+            <NavDropdown title='Dropdown' id='collasible-nav-dropdown'>
               <NavDropdown.Item href='#action/3.1'>Action</NavDropdown.Item>
               <NavDropdown.Item href='#action/3.2'>
                 Another action
@@ -27,15 +27,15 @@ const NavBar = () => {
               <NavDropdown.Item href='#action/3.4'>
                 Separated link
               </NavDropdown.Item>
-            </NavDropdown> */}
+            </NavDropdown>
           </Nav>
-          {/* <Nav>
+          <Nav>
             <Nav.Link href='#deets'>Login/Logout</Nav.Link>
             <Nav.Link eventKey={2} href='#memes'>
               User Profile
             </Nav.Link>
-          </Nav> */}
-        </Navbar.Collapse>
+          </Nav>
+        </Navbar.Collapse> */}
       </Container>
     </Navbar>
   );

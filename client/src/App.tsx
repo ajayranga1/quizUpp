@@ -4,6 +4,7 @@ import { Routes, Route } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.scss';
 import NavBar from './components/NavBar';
+import Banner from './components/Banner';
 import Credentials from './components/Credentials';
 import Quiz from './components/Quiz';
 import Preview from './components/Preview';
@@ -26,6 +27,7 @@ function App() {
         <Route path='admin/response/:userId' element={<AdminPreview />} />
         <Route path='/' element={<Credentials />} />
       </Routes>
+      <Banner />
       <Footer />
     </div>
   );
