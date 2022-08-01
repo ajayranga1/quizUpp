@@ -343,7 +343,7 @@ function Credentials() {
               <Form.Group className='mb-3' controlId='formBasicCheckbox'>
                 <Form.Check
                   type='checkbox'
-                  label='I agree that all the details provided by me are genuine and true.'
+                  label='I agree that all the details provided by me are genuine and true. And i agree with all the Terms of Services and Privacy Policy of Home Depot.'
                   checked={check}
                   required
                   onChange={(e) => setCheck(e.target.checked)}
