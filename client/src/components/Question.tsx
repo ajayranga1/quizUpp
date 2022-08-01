@@ -31,7 +31,7 @@ const Question = ({
         {adminPreview ? (
           <p
             className={`capital-first-letter ms-1 ${
-              questionData.answer !== answer ? 'text-success' : 'text-danger'
+              questionData.answer === answer ? 'text-success' : 'text-danger'
             }`}
           >
             {questionData.statement}
