@@ -3,6 +3,7 @@ import * as dotenv from 'dotenv';
 
 import questions from './data/questions';
 import Question from './models/questionSchema';
+import User from './models/userSchema';
 import './utils/dbConnect';
 
 dotenv.config();
@@ -12,6 +13,7 @@ const importData = async () => {
     console.log('Importing Data!!!!!!!!!!');
 
     await Question.deleteMany();
+    await User.deleteMany();
 
     await Question.insertMany(questions);
     console.log('Data imported!!!!!!!!!!');
@@ -24,6 +26,7 @@ const importData = async () => {
 const destroyData = async () => {
   try {
     await Question.deleteMany();
+    await User.deleteMany();
     console.log('Data deleted!!!!!!!!!!');
     process.exit();
   } catch (err) {

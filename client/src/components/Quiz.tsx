@@ -101,7 +101,7 @@ function Quiz() {
         <h2 className='my-4'>Welcome to the Quiz</h2>
         <span>
           <FcAlarmClock size={'30px'} className='ticking-clock' />
-          {counter} s
+          {Math.floor(counter / 60)}:{counter - Math.floor(time / 60) * 60} s.
         </span>
       </div>
       {questionLoading || responseLoading ? (

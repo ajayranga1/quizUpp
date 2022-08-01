@@ -5,8 +5,6 @@ const questionSchema = new mongoose.Schema(
     statement: {
       type: String,
       trim: true,
-      lowercase: true,
-      unique: true,
       required: [true, 'Statement is required'],
     },
     answer: {
@@ -14,6 +12,11 @@ const questionSchema = new mongoose.Schema(
       trim: true,
       lowercase: true,
       required: [true, 'answer is required'],
+    },
+
+    explanation: {
+      type: String,
+      trim: true,
     },
     options: [
       {
@@ -26,7 +29,6 @@ const questionSchema = new mongoose.Schema(
         text: {
           type: String,
           trim: true,
-          lowercase: true,
           required: [true, 'Option is required'],
         },
         _id: { id: false },
