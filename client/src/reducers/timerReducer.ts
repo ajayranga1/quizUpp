@@ -1,7 +1,7 @@
 import * as types from './../actionTypes/timer';
 
 const initialState = {
-  time: 20 * 60,
+  time: 5 * 60,
   loading: false,
   error: {},
 };
